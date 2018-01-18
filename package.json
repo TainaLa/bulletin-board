@@ -1,0 +1,14 @@
+{
+  "name": "bulletin-board",
+  "version": "1.0.0",
+  "description": "a simple message board",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kadeem and Taina",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
