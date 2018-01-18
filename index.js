@@ -5,6 +5,8 @@ var bodyParser = require('body-parser'); // Loads the piece of middleware for ma
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 var app = express();
+var fileData = [];
+
 
 var server = app.listen(3000,listening);
 function listening(){
@@ -25,7 +27,16 @@ function postMsg(request,response){
 	console.log('post caught')
 	var subject = request.body.subject;
 	var msg = request.body.msg;
+	var test = {'Title':subject , 'Message':msg};
+	// console.log(subject + ': ' +msg);
+	fileData.push(test);
+	console.log(fileData);
+	console.log(fileData[0].Message);
 
-	console.log(subject + ': ' +msg);
+	fs.writeFile('post.json',JSON.stringify(fileData),function(err){
+		if(err){
+			console.log(err);
+		}
+	});
 
 }
