@@ -6,7 +6,8 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 var app = express();
 var fileData = [];
-fileData = fs.readFileSync('post.json');
+var inputdata = fs.readFileSync('post.json');
+fileData = JSON.parse(inputdata)
 var inputdata = [];
 
 
@@ -15,6 +16,24 @@ function listening(){
 	console.log('Server started, Listening on port 3000')
 }
 app.use(session({secret:'hhh'}));
+// console.log(fileData);
+
+//this fuction binds the app to the funtion. ensures fileData exists. MUST HAVE!!!
+app.use(function(req, res, next){
+    if (typeof(req.session.fileData) == 'undefined') {
+        req.session.fileData = [];
+    }else {
+    	req.session.fileData = fileData;
+    }
+    next();
+});
+//this route loads homepage and should fill list with data from JSON file
+app.get('/home', function(request, response) { 
+	console.log(fileData);
+    response.render('index.ejs', {fileData: request.session.fileData});
+    console.log('this works');
+});
+
 //sets public as the default folder to look for files
 //app.use(express.static('public'));
 
@@ -41,14 +60,12 @@ function postMsg(request,response){
 			console.log(err);
 		}
 	});
-
-app.get('/home', function(request, response) { 
-    response.render('index.ejs', {fileData: request.session.fileData});
-    console.log('this works');
-});
-	// app.use(function(request,response,next){
-	// 	response.redirect('/home');
-	// })
-
-
+	response.redirect('/home')
 }
+
+app.use(function(request,response,next){
+	response.redirect('/home');
+});
+
+
+
