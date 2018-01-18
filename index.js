@@ -45,7 +45,7 @@ function postMsg(request,response){
 app.get('/home', function(request, response) { 
     response.render('index.ejs', {fileData: request.session.fileData});
     console.log('this works');
-})
+});
 	// app.use(function(request,response,next){
 	// 	response.redirect('/home');
 	// })
