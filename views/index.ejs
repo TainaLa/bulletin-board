@@ -1,23 +1,74 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 	<title>Bulleting Board</title>
+  
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+ <!--  <link href="style.css" rel="stylesheet" type="text/css"> -->
+
+  <style>
+  body {background-color: grey;}
+  h1{text-align: center; padding-top: 30px; padding-bottom: 20px; font-weight: bold;}
+  h5   {color: blue;}
+  label {color: black; font-size: 26px; padding-top: 50px; font-weight: bold;}
+  #postId { padding-top: 8px; }
+  form {padding-bottom: 20px;}
+ /* p    {color: red;}*/
+  </style>
+
+
 </head>
+
 <body>
-	<h1>Bulleting Board</h1>
+  <h1>BULLETING BOARD</h1>
+	<div class="container">
+
+    <form action= "/post/msg" method="POST">
+
+  <div class="form-group">
+    <label for="exampleFormControlInput1">TITLE</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Title of your post"  name="subject">
+  </div>
+  
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1" id="postId">POST</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="msg"></textarea>
+  </div>
+
+  <input type="submit">
+</form>
+
+  <ul class="list-group">
+     <!-- <li class="list-group-item">Bulleting Board</li>
+ -->    <% fileData.forEach(function(inputdata, index) { %>
+            <li class="list-group-item"><h5> <%= inputdata.Title%> </h5> <%= inputdata.Message %> </li>
+        <% }); %>
+  
+
+  
+  <!-- <li class="list-group-item list-group-item-primary">This is a primary list group item</li> -->
+  
+</ul>
+  
+
+	<!-- <h1>Bulleting Board</h1>
 	   <ul>
         <% fileData.forEach(function(inputdata, index) { %>
             <li> <h4><%= inputdata.Title%></h4><%= inputdata.Message %> </li>
         <% }); %>
-        </ul>
+        </ul> -->
 
-	<form action="/post/msg" method="POST">
-		
-		<input type="text" name="subject" value="subject" id="subject">
-		<input type="text" name="msg" id ="hhh">
-		<input type="submit" >
 
-	</form>
 
+</div>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
