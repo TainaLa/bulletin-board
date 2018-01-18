@@ -6,14 +6,17 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 var app = express();
 var fileData = [];
+fileData = fs.readFileSync('post.json');
+var inputdata = [];
 
 
 var server = app.listen(3000,listening);
 function listening(){
 	console.log('Server started, Listening on port 3000')
 }
+app.use(session({secret:'hhh'}));
 //sets public as the default folder to look for files
-app.use(express.static('public'));
+//app.use(express.static('public'));
 
 //renders the index.html to browsers
 // app.get('/home',loadHome);
@@ -38,5 +41,14 @@ function postMsg(request,response){
 			console.log(err);
 		}
 	});
+
+app.get('/home', function(request, response) { 
+    response.render('index.ejs', {fileData: request.session.fileData});
+    console.log('this works');
+})
+	// app.use(function(request,response,next){
+	// 	response.redirect('/home');
+	// })
+
 
 }
