@@ -5,6 +5,11 @@
 </head>
 <body>
 	<h1>Bulleting Board</h1>
+	   <ul>
+        <% fileData.forEach(function(inputdata, index) { %>
+            <li> <h4><%= inputdata.Title%></h4><%= inputdata.Message %> </li>
+        <% }); %>
+        </ul>
 
 	<form action="/post/msg" method="POST">
 		
